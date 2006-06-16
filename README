@@ -1,0 +1,114 @@
+sqlite
+-------------------------------------------
+SQLite is a C library that implements an embeddable SQL database engine.
+Programs that link with the SQLite library can have SQL database access
+without running a separate RDBMS process. The distribution comes with a
+standalone command-line access program (sqlite) that can be used to
+administer an SQLite database and which serves as an example of how to 
+use the SQLite library.
+
+Runtime requirements:
+  cygwin-1.5.19-4
+  libreadline6-5.1-5
+  tcl8.4-8.4.12-1	(For Tcl bindings only)
+
+Build requirements:
+  cygwin-1.5.19-4
+  autoconf2.5-2.59-3
+  automake1.9-1.9.6-1
+  binutils-20050610-1
+  gawk-3.1.5-2
+  gcc-core-3.4.4-1
+  libtool1.5-1.5.20-2
+  make-3.80-1
+  sed-4.1.4-1
+  libreadline-devel-5.1-5
+  tcl8.4-8.4.12-1
+
+Canonical homepage:
+  http://www.sqlite.org/
+
+-------------------------------------------
+
+Build instructions:
+  unpack sqlite-2.8.17-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./sqlite-2.8.17-X.cygport all
+
+This will create:
+  /usr/src/sqlite-2.8.17-X-src.tar.bz2
+  /usr/src/sqlite-2.8.17-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/cygsqlite-0.dll
+  /usr/bin/lemon.exe
+  /usr/bin/sqlite.exe
+  /usr/include/sqlite.h
+  /usr/lib/libsqlite.a
+  /usr/lib/libsqlite.dll.a
+  /usr/lib/libsqlite.la
+  /usr/lib/pkgconfig/sqlite.pc
+  /usr/lib/tcl8.4/sqlite2.8.17/pkgIndex.tcl
+  /usr/lib/tcl8.4/sqlite2.8.17/tclsqlite.dll
+  /usr/share/doc/Cygwin/sqlite-2.8.17.README
+  /usr/share/doc/sqlite-2.8.17/README
+  /usr/share/doc/sqlite-2.8.17/html/arch.html
+  /usr/share/doc/sqlite-2.8.17/html/arch.png
+  /usr/share/doc/sqlite-2.8.17/html/c_interface.html
+  /usr/share/doc/sqlite-2.8.17/html/changes.html
+  /usr/share/doc/sqlite-2.8.17/html/conflict.html
+  /usr/share/doc/sqlite-2.8.17/html/datatypes.html
+  /usr/share/doc/sqlite-2.8.17/html/download.html
+  /usr/share/doc/sqlite-2.8.17/html/faq.html
+  /usr/share/doc/sqlite-2.8.17/html/fileformat.html
+  /usr/share/doc/sqlite-2.8.17/html/formatchng.html
+  /usr/share/doc/sqlite-2.8.17/html/index.html
+  /usr/share/doc/sqlite-2.8.17/html/lang.html
+  /usr/share/doc/sqlite-2.8.17/html/mingw.html
+  /usr/share/doc/sqlite-2.8.17/html/nulls.html
+  /usr/share/doc/sqlite-2.8.17/html/omitted.html
+  /usr/share/doc/sqlite-2.8.17/html/opcode.html
+  /usr/share/doc/sqlite-2.8.17/html/quickstart.html
+  /usr/share/doc/sqlite-2.8.17/html/speed.html
+  /usr/share/doc/sqlite-2.8.17/html/sqlite.html
+  /usr/share/doc/sqlite-2.8.17/html/tclsqlite.html
+  /usr/share/doc/sqlite-2.8.17/html/vdbe.html
+  /usr/share/man/man1/sqlite.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 2.8.17-2 -----
+Tcl binding is now based on the unix tcl84.
+
+----- version 2.8.17-1 -----
+Version bump.
+
+----- version 2.8.16-1 -----
+Version bump.
+* Tcl module built and installed based on Gentoo ebuild;
+* lemon.exe installed;
+* sqlite(1) man page installed.
+
+----- version 2.8.15-1 -----
+Upstream bugfix release; see html/changes.html for details.
+
+Cygwin changes:
+* Tcl wrapper installed as module;
+* built against libncurses8 and libreadline6 packages.
+
+----- version 2.8.14-1 -----
+New upstream release.  See the file html/changes.html for details.
+
+----- version 2.8.13-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
