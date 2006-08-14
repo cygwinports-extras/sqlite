@@ -1,0 +1,61 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' -x texinfo.tex -x ylwrap -x configure -x gnome-doc-utils.make -x intltool.m4 -x omf.make -x xmldocs.make origsrc/sqlite-2.8.17/Makefile.in src/sqlite-2.8.17/Makefile.in
+--- origsrc/sqlite-2.8.17/Makefile.in	2005-04-23 17:43:23.000000000 -0500
++++ src/sqlite-2.8.17/Makefile.in	2006-08-14 18:02:42.613500000 -0500
+@@ -188,12 +188,12 @@
+ 
+ libsqlite.la:	$(LIBOBJ)
+ 	$(LTLINK) -o libsqlite.la $(LIBOBJ) ${RELEASE} -rpath @exec_prefix@/lib \
+-		-version-info "8:6:8"
++		-version-info "8:6:8" -no-undefined
+ 
+ libtclsqlite.la:	tclsqlite.lo libsqlite.la
+ 	$(LTLINK) -o libtclsqlite.la tclsqlite.lo \
+ 		libsqlite.la $(LIBTCL) -rpath @exec_prefix@/lib/sqlite \
+-		-version-info "8:6:8"
++		-version-info "8:6:8" -no-undefined
+ 
+ sqlite@TARGET_EXEEXT@:	$(TOP)/src/shell.c libsqlite.la sqlite.h
+ 	$(LTLINK) $(READLINE_FLAGS) -o sqlite $(TOP)/src/shell.c \
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x ltmain.sh -x 'config.*' -x depcomp -x install-sh -x missing -x mkinstalldirs -x autom4te.cache -x '*compile' -x 'intltool*.in' -x 'xml-i18n-*.in' -x '*.pyc' -x '*.mo' -x '*.gmo' -x ABOUT-NLS -x Makevars.template -x COPYING -x INSTALL -x '*.orig' -x '*.rej' -x '*~' -x '*.temp' -x texinfo.tex -x ylwrap -x configure -x gnome-doc-utils.make -x intltool.m4 -x omf.make -x xmldocs.make origsrc/sqlite-2.8.17/maketcllib.sh src/sqlite-2.8.17/maketcllib.sh
+--- origsrc/sqlite-2.8.17/maketcllib.sh	1969-12-31 18:00:00.000000000 -0600
++++ src/sqlite-2.8.17/maketcllib.sh	2006-08-14 17:57:30.245375000 -0500
+@@ -0,0 +1,39 @@
++#!/bin/bash
++#
++# This script was adapted from the one used by Hwaci to build it's 
++# documentation and binaries for shipping to their website. 
++#
++# Any similarity to the original has probably been trampled into
++# oblivion modifying everything for Gentoo.
++#
++echo "Starting TCL Build"
++
++# Set srcdir to the name of the directory that contains the publish.sh
++# script.
++#
++srcdir=`echo "$0" | sed 's%\(^.*\)/[^/][^/]*$%\1%'`
++
++#
++# Build the tclsqlite.so shared library for import into tclsh or wish
++# under Linux
++#
++make target_source
++cd tsrc
++rm shell.c
++
++CFLAGS='-O2 -pipe'
++OPTS='-DUSE_TCL_STUBS=1 -DNDEBUG=1'
++TCLSTUBLIB=-ltclstub8.4
++
++gcc $CFLAGS $OPTS -I. -shared *.c $TCLSTUBLIB -o tclsqlite.dll
++
++strip tclsqlite.dll
++cp tclsqlite.dll ..
++
++cd ..
++
++echo "pkg_mkIndex [pwd] tclsqlite.dll" >> make_pkgIndex.tcl
++tclsh make_pkgIndex.tcl
++
++echo "Done TCL Build"
++

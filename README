@@ -8,20 +8,20 @@ administer an SQLite database and which serves as an example of how to
 use the SQLite library.
 
 Runtime requirements:
-  cygwin-1.5.19-4
+  cygwin-1.5.21-1
   libreadline6-5.1-5
   tcl8.4-8.4.12-1	(For Tcl bindings only)
 
 Build requirements:
-  cygwin-1.5.19-4
-  autoconf2.5-2.59-3
+  cygwin-1.5.21-1
+  autoconf2.5-2.59-2
   automake1.9-1.9.6-1
-  binutils-20050610-1
+  binutils-20060709-1
   gawk-3.1.5-2
   gcc-core-3.4.4-1
-  libtool1.5-1.5.20-2
-  make-3.80-1
-  sed-4.1.4-1
+  libtool1.5-1.5.22-1
+  make-3.81-1
+  sed-4.1.5-1
   libreadline-devel-5.1-5
   tcl8.4-8.4.12-1
 
@@ -38,23 +38,18 @@ Build instructions:
   cygport ./sqlite-2.8.17-X.cygport all
 
 This will create:
+  /usr/src/libsqlite-devel-2.8.17-X.tar.bz2
+  /usr/src/libsqlite0-2.8.17-X.tar.bz2
   /usr/src/sqlite-2.8.17-X-src.tar.bz2
   /usr/src/sqlite-2.8.17-X.tar.bz2
+  /usr/src/tclsqlite-2.8.17-X.tar.bz2
 
 -------------------------------------------
 
 Files included in the binary package:
 
-  /usr/bin/cygsqlite-0.dll
   /usr/bin/lemon.exe
   /usr/bin/sqlite.exe
-  /usr/include/sqlite.h
-  /usr/lib/libsqlite.a
-  /usr/lib/libsqlite.dll.a
-  /usr/lib/libsqlite.la
-  /usr/lib/pkgconfig/sqlite.pc
-  /usr/lib/tcl8.4/sqlite2.8.17/pkgIndex.tcl
-  /usr/lib/tcl8.4/sqlite2.8.17/tclsqlite.dll
   /usr/share/doc/Cygwin/sqlite-2.8.17.README
   /usr/share/doc/sqlite-2.8.17/README
   /usr/share/doc/sqlite-2.8.17/html/arch.html
@@ -80,9 +75,29 @@ Files included in the binary package:
   /usr/share/doc/sqlite-2.8.17/html/vdbe.html
   /usr/share/man/man1/sqlite.1.gz
 
+Files included in the runtime library package:
+
+  /usr/bin/cygsqlite-0.dll
+
+Files included in the development package:
+
+  /usr/include/sqlite.h
+  /usr/lib/libsqlite.a
+  /usr/lib/libsqlite.dll.a
+  /usr/lib/libsqlite.la
+  /usr/lib/pkgconfig/sqlite.pc
+
+Files included in the Tcl bindings package:
+
+  /usr/lib/tcl8.4/sqlite2.8.17/pkgIndex.tcl
+  /usr/lib/tcl8.4/sqlite2.8.17/tclsqlite.dll
+
 ------------------
 
 Port Notes:
+
+----- version 2.8.17-3 -----
+Broke out several binary packages.
 
 ----- version 2.8.17-2 -----
 Tcl binding is now based on the unix tcl84.
