@@ -1,0 +1,17 @@
+--- origsrc/sqlite-2.8.17/Makefile.in	2005-04-23 17:43:23.000000000 -0500
++++ src/sqlite-2.8.17/Makefile.in	2006-08-14 18:02:42.613500000 -0500
+@@ -188,12 +188,12 @@
+ 
+ libsqlite.la:	$(LIBOBJ)
+ 	$(LTLINK) -o libsqlite.la $(LIBOBJ) ${RELEASE} -rpath @exec_prefix@/lib \
+-		-version-info "8:6:8"
++		-version-info "8:6:8" -no-undefined
+ 
+ libtclsqlite.la:	tclsqlite.lo libsqlite.la
+ 	$(LTLINK) -o libtclsqlite.la tclsqlite.lo \
+ 		libsqlite.la $(LIBTCL) -rpath @exec_prefix@/lib/sqlite \
+-		-version-info "8:6:8"
++		-avoid-version -no-undefined
+ 
+ sqlite@TARGET_EXEEXT@:	$(TOP)/src/shell.c libsqlite.la sqlite.h
+ 	$(LTLINK) $(READLINE_FLAGS) -o sqlite $(TOP)/src/shell.c \
